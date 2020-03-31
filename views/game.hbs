@@ -1,0 +1,43 @@
+<div class="col text-center">
+    <p class="mb-4">Room Code: <abbr title="Use this code to invite your friends!">{{code}}</abbr></p>
+    <div id="panel">
+        <p id="lblQuestion" class="display-4">{{question}}</p>
+        <br>
+        <span>
+            {{#if shuffle}}
+            <input type="button" id="btnShuffle" class="btn btn-link mr-2" value="Next Question">
+            {{/if}}
+            {{#if deeper}}
+            <input type="button" id="btnDeeper" class="btn btn-link" value="Go Deeper">
+            {{/if}}
+        </span>
+    </div>
+</div>
+<script>
+    $("#btnShuffle").click(function () {
+        $.ajax({
+            url: "/partialshuffle",
+            method: "GET",
+            success: function (result) {
+                $("#lblQuestion").text(result);
+            },
+            error: function (err) {
+                alert("There was an error while communiating with server");
+            }
+        })
+    });
+
+    function refresh() {
+        $.ajax({
+            url: "/refresh",
+            method: "GET",
+            success: function (result) {
+                $("#lblQuestion").text(result);
+            },
+            error: function (err) {
+                alert("Took too long to receive a response!");
+            }
+        })
+    }
+    setInterval(refresh, 5000);
+</script>

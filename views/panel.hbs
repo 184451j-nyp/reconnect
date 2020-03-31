@@ -1,0 +1,10 @@
+<p id="lblQuestion" class="display-4">{{question}}</p>
+<br>
+<span>
+    {{#if shuffle}}
+    <input type="button" id="btnShuffle" class="btn btn-link mr-2" value="Next Question">
+    {{/if}}
+    {{#if deeper}}
+    <input type="button" id="btnDeeper" class="btn btn-link" value="Go Deeper">
+    {{/if}}
+</span>
