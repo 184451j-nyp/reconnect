@@ -5,7 +5,7 @@ const rm = require("../models/Room");
 const qn = require("../models/Question");
 
 router.get("/", (req, res) => {
-    req.session.destroy();
+    req.session = null;
     res.render("index");
 });
 

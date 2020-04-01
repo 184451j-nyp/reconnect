@@ -4,7 +4,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const compression = require('compression');
 const helmet = require('helmet');
-const session = require('express-session');
+const session = require('cookie-session');
 const cookie = require('cookie-parser');
 const flash = require('connect-flash');
 const db = require("./config/DBConnection");
@@ -25,9 +25,9 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cookie());
 app.use(session({
-    secret: 'dirtyLittleSecret',
-    resave: false,
-    saveUninitialized: true
+    name: "reconnectSession",
+    keys: ["reconkey", "reconkey2"],
+    maxAge: 60 * 60 * 1000
 }));
 app.use(flash());
 app.use(compression());
@@ -36,6 +36,6 @@ app.use(helmet());
 const mainRoute = require('./routes/main');
 app.use('/', mainRoute);
 
-db.setUpDB(true);
+db.setUpDB(false);
 
 app.listen(49800);
