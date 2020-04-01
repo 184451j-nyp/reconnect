@@ -14,7 +14,7 @@ const app = express();
 app.engine('.hbs', exphbs({
     defaultLayout: "layout",
     extname: '.hbs',
-    partialsDir: __dirname + "/views"
+    partialsDir: __dirname + "/views/partials"
 }));
 app.set('view engine', '.hbs');
 app.use(bodyParser.urlencoded({

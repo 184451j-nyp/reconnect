@@ -7,8 +7,14 @@ const Room = db.define("room", {
         allowNull: false,
         primaryKey: true
     },
-    past_qns: {
-        type: seq.STRING
+    past_qns:{
+        type: seq.STRING,
+        get: function(){
+            return JSON.parse(this.getDataValue("past_qns"));
+        },
+        set:function(val){
+            return this.setDataValue("past_qns", JSON.stringify(val));
+        }
     },
     current_qn: {
         type: seq.INTEGER

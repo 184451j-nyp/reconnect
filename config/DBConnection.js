@@ -1,6 +1,4 @@
 const db = require("./DBConfig");
-const room = require("../models/Room");
-const question = require("../models/Question");
 
 const setUpDB = (drop) => {
     db.authenticate().then(

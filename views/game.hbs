@@ -12,32 +12,6 @@
             {{/if}}
         </span>
     </div>
+    <a href="/">Leave Room</a>
 </div>
-<script>
-    $("#btnShuffle").click(function () {
-        $.ajax({
-            url: "/partialshuffle",
-            method: "GET",
-            success: function (result) {
-                $("#lblQuestion").text(result);
-            },
-            error: function (err) {
-                alert("There was an error while communiating with server");
-            }
-        })
-    });
-
-    function refresh() {
-        $.ajax({
-            url: "/refresh",
-            method: "GET",
-            success: function (result) {
-                $("#lblQuestion").text(result);
-            },
-            error: function (err) {
-                alert("Took too long to receive a response!");
-            }
-        })
-    }
-    setInterval(refresh, 5000);
-</script>
+<script type="text/javascript" src="/js/game.js"></script>
