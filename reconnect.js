@@ -25,10 +25,6 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cookie());
 app.use(session({
-    cookie:{
-	secure: true,
-	maxAge: 60000
-	},
     secret: 'dirtyLittleSecret',
     resave: false,
     saveUninitialized: true

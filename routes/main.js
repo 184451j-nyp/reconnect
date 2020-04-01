@@ -37,7 +37,7 @@ router.get("/create", (req, res) => {
 router.post("/join", (req, res) => {
     let id = req.body.tbRoomCode;
     (async () => {
-        let room = await rm.findByPk(id);
+        const room = await rm.findByPk(id);
         if (room == null) {
             req.flash("fail", "Invalid join code!");
             res.redirect("/enter");
@@ -73,7 +73,7 @@ router.get("/game", (req, res) => {
             }
         }
         else {
-            let rt = await qn.findByPk(room.current_qn);
+            const rt = await qn.findByPk(room.current_qn);
             question = rt.qn_string;
         }
         res.render("game", {
@@ -91,7 +91,7 @@ router.get("/shuffle", (req, res) => {
     var deeper = false;
     var question = "";
     (async () => {
-        let room = await rm.findByPk(code);
+        const room = await rm.findByPk(code);
         let room_past_qns = room.past_qns;
         let room_current_qn = room.current_qn;
         let room_current_level = room.current_level;
@@ -126,7 +126,7 @@ router.get("/shuffle", (req, res) => {
                 selectQnId = totalByClass[random].qn_id;
             } while(room_past_qns.includes(selectQnId));
             room_current_qn = selectQnId;
-            let qnObj = await qn.findByPk(selectQnId);
+            const qnObj = await qn.findByPk(selectQnId);
             question = qnObj.qn_string;
 
             if(room_past_qns.length >= 15 && room_current_level == 1) {
@@ -166,7 +166,7 @@ router.get("/deeper", (req, res) => {
 
 router.get("/refresh", (req, res) => {
     (async () => {
-        const id = req.session.roomCode;
+        let id = req.session.roomCode;
         const room = await rm.findByPk(id);
         if (room.current_qn != 0) {
             const question = await qn.findByPk(room.current_qn);

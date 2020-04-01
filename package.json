@@ -1,9 +1,9 @@
 {
   "name": "reconnect-node",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "reconnect.js",
   "scripts": {
-    "start": "start http://localhost:49000 && nodemon reconnect.js",
+    "start": "start http://localhost:49800 && nodemon reconnect.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
