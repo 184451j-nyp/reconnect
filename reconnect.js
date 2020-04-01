@@ -25,9 +25,13 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cookie());
 app.use(session({
+    cookie:{
+	secure: true,
+	maxAge: 60000
+	},
     secret: 'dirtyLittleSecret',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: true
 }));
 app.use(flash());
 app.use(compression());
@@ -36,6 +40,6 @@ app.use(helmet());
 const mainRoute = require('./routes/main');
 app.use('/', mainRoute);
 
-db.setUpDB(false);
+db.setUpDB(true);
 
-app.listen(49000);
+app.listen(49800);
