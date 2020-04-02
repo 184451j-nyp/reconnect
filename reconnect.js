@@ -20,6 +20,7 @@ app.set('view engine', '.hbs');
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+app.enable('view cache');
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
@@ -30,12 +31,13 @@ app.use(session({
     maxAge: 60 * 60 * 1000
 }));
 app.use(flash());
+
+app.use('/', require('./routes/main'));
+app.use('/api', require('./routes/api'));
+
 app.use(compression());
 app.use(helmet());
 
-const mainRoute = require('./routes/main');
-app.use('/', mainRoute);
-
-db.setUpDB(false);
+db.setUpDB();
 
 app.listen(49800);

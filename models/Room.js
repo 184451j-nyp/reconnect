@@ -7,21 +7,26 @@ const Room = db.define("room", {
         allowNull: false,
         primaryKey: true
     },
-    past_qns:{
+    past_qns: {
         type: seq.STRING,
-        get: function(){
+        get: function () {
             return JSON.parse(this.getDataValue("past_qns"));
         },
-        set:function(val){
+        set: function (val) {
             return this.setDataValue("past_qns", JSON.stringify(val));
-        }
+        },
+        defaultValue: "[]"
     },
     current_qn: {
-        type: seq.INTEGER
+        type: seq.INTEGER,
+        defaultValue: -1
     },
     current_level: {
-        type: seq.INTEGER
+        type: seq.INTEGER,
+        defaultValue: 1
     }
+}, {
+    createdAt: false
 });
 
 module.exports = Room;

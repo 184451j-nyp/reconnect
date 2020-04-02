@@ -14,6 +14,8 @@ const Question = db.define("question", {
     qn_rating: {
         type: seq.INTEGER
     }
+}, {
+    timestamps: false
 });
 
 module.exports = Question;

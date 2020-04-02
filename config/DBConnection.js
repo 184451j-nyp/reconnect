@@ -1,15 +1,13 @@
 const db = require("./DBConfig");
 
-const setUpDB = (drop) => {
+const setUpDB = () => {
     db.authenticate().then(
         () => {
             console.log('database connected');
         }
     ).then(
         () => {
-            db.sync({ // Creates table if none exists
-                force: drop
-            }).catch(err => console.log(err));
+            db.sync().catch(err => console.log(err));
         }
     ).catch(err => console.log('Error: ' + err));
 };
