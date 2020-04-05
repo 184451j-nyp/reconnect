@@ -27,6 +27,10 @@ $(document).on("click", "#btnDeeper", function () {
     })
 });
 
+$(document).on("click", "#btnLeave", beforeUnload);
+
+$(window).on("beforeunload", beforeUnload);
+
 function refresh() {
     $.ajax({
         url: "/api/refresh",
@@ -38,10 +42,24 @@ function refresh() {
         },
         error: function (err) {
             alert("Took too long to receive a response!");
-            i++;
-            if (i == 3) {
+            reconnect++;
+            if (reconnect == 3) {
                 clearInterval(interval);
             }
         }
     });
+}
+
+function beforeUnload(){
+    console.log("unload event fired");
+    $.ajax({
+        url: "/api/unload",
+        method: "GET",
+        success: function(){
+            window.location.href = "/";
+        },
+        failure: function(){
+            console.log("error in executing final function");
+        }
+    })
 }

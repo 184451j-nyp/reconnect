@@ -20,9 +20,9 @@ router.get("/shuffle", (req, res) => {
             where: {
                 qn_rating: room.current_level
             }
-        }); //returns an array of questions for room's current level
+        });
 
-        if (room_past_qns.length == totalByClass.length) {
+        if (room_past_qns.length >= totalByClass.length) {
             switch (room_current_level) {
                 case 1:
                     question = "It's time to go deeper.";
@@ -38,13 +38,13 @@ router.get("/shuffle", (req, res) => {
                     shuffle = false;
                     break;
                 default:
-                    console.log("Reached an error when shuffle is called. current level is in unacceptable range");
-                    break;
+                    res.end();
+                    return;
             }
-        }else {
+        } else {
             if (room_past_qns.length >= 15 && room_current_level == 1) {
                 deeper = true;
-            } 
+            }
             let randomInt;
             let qnObjId;
             do {
@@ -104,13 +104,13 @@ router.get("/refresh", (req, res) => {
 
     (async () => {
         const room = await rm.findByPk(code);
-        if(req.session.roomQn == room.current_qn){
+        if (req.session.roomQn == room.current_qn) {
             res.end();
             return;
         }
 
-        if(room.current_qn < 0){
-            switch(room.current_qn){
+        if (room.current_qn < 0) {
+            switch (room.current_qn) {
                 case -1:
                     question = "Tell me your story.";
                     break;
@@ -124,8 +124,7 @@ router.get("/refresh", (req, res) => {
                     shuffle = false;
                     break;
             }
-        }
-        else{
+        } else {
             if (room.past_qns.length >= 15 && room.current_level == 1) {
                 deeper = true;
             }
@@ -140,6 +139,23 @@ router.get("/refresh", (req, res) => {
             shuffle,
             deeper
         });
+    })();
+});
+
+router.get("/unload", (req, res) => {
+    const id = req.session.roomCode;
+    (async () => {
+        const room = await rm.findByPk(id);
+        var roomCapacity = room.capacity - 1;
+        room.update({
+            capacity: roomCapacity
+        }, {
+            where: {
+                room_id: id
+            }
+        });
+        req.session = null;
+        res.end();
     })();
 });
 
