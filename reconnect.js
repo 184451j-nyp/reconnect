@@ -11,6 +11,8 @@ const https = require("https");
 const fs = require("fs");
 const db = require("./config/DBConnection");
 
+require('dotenv').config();
+
 const app = express();
 
 app.engine(".hbs", exphbs({
@@ -42,13 +44,12 @@ app.use(helmet());
 
 db.setUpDB();
 
-if(process.env.NODE_ENV == "production"){
+if (process.env.NODE_ENV == "production") {
     const options = {
         key: fs.readFileSync(process.env.reconnect_key),
         cert: fs.readFileSync(process.env.reconnect_cert)
     }
     https.createServer(options, app).listen(49443);
 }
-else{
-    app.listen(49080);
-}
+
+app.listen(49080);

@@ -3,7 +3,7 @@
   "version": "1.0.2",
   "main": "reconnect.js",
   "scripts": {
-    "start": "start http://localhost:49800 && nodemon --inspect reconnect.js",
+    "start": "start http://localhost:49080 && nodemon --inspect reconnect.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,6 +22,7 @@
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.5",
     "cookie-session": "^1.4.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-handlebars": "^4.0.3",
     "helmet": "^3.22.0",
