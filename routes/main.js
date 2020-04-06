@@ -1,11 +1,15 @@
 'use strict';
 const express = require('express');
 const router = express.Router();
-const rm = require("../models/Room");
-const qn = require("../models/Question");
+const roomORM = require("../models/Room");
+const qnsORM = require("../models/Question");
 
 router.get("/", (req, res) => {
     res.render("index");
+});
+
+router.get("/instructions", (req, res) => {
+    res.render("instructions");
 });
 
 router.get("/enter", (req, res) => {
@@ -20,10 +24,10 @@ router.get("/create", (req, res) => {
         var room;
         do {
             id = (Math.floor(Math.random() * (999999 - 10)) + 10).toString().padStart(6, "0");
-            room = await rm.findByPk(id);
+            room = await roomORM.findByPk(id);
         } while (room != null);
 
-        await rm.create({
+        await roomORM.create({
             room_id: id
         });
         req.session.roomCode = id;
@@ -34,12 +38,12 @@ router.get("/create", (req, res) => {
 router.post("/join", (req, res) => {
     let id = req.body.tbRoomCode;
     (async () => {
-        const room = await rm.findByPk(id);
+        const room = await roomORM.findByPk(id);
         if (room != null && room.capacity < 2) {
             req.session.roomCode = id;
             req.session.roomQn = room.current_qn;
             let currentCapacity = room.capacity + 1;
-            rm.update({
+            roomORM.update({
                 capacity: currentCapacity
             }, {
                 where: {
@@ -66,7 +70,7 @@ router.get("/game", (req, res) => {
     }
 
     (async () => {
-        const room = await rm.findByPk(code);
+        const room = await roomORM.findByPk(code);
         req.session.roomQn = room.current_qn;
         if (room.current_qn < 0) {
             switch (room.current_qn) {
@@ -84,11 +88,12 @@ router.get("/game", (req, res) => {
                     break;
             }
         } else {
-            const qnObj = await qn.findByPk(room.current_qn);
+            const qnObj = await qnsORM.findByPk(room.current_qn);
             question = qnObj.qn_string;
         }
 
         res.render("game", {
+            layout: "ingame",
             code,
             question,
             shuffle,
@@ -96,5 +101,13 @@ router.get("/game", (req, res) => {
         });
     })();
 });
+
+router.get("/endgame", (req, res) => {
+    res.render("endgame");
+});
+
+router.get("/shop", (req, res) => {
+    res.render("shop");
+})
 
 module.exports = router;

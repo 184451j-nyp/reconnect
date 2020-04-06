@@ -1,20 +1,13 @@
-<div class="col-6 text-center border-right border-dark">
-    <p>Create a new room to play in!</p>
-    <a href="/create" class="btn btn-dark">Create Room</a>
+<div class="create">
+    <h1>Create a connection.</h1>
+    <a href="/create">Open a room.</a>
 </div>
-<div class="col-6 text-center">
-    <form action="/join" method="POST">
-        <p>Enter an existing room!</p>
-        <div class="row">
-            <div class="col-8">
-                <input type="text" placeholder="Enter 6-digit Room Code" class="mb-2 form-control" name="tbRoomCode">
-            </div>
-            <div class="col-4">
-                <input type="submit" class="btn btn-dark" value="Join Room">
-            </div>
-        </div>
-        {{#if fail}}
-        <p style="color: red;">{{fail}}</p>
-        {{/if}}
+<div class="line"></div>
+<div class="enter">
+    <form id="form1" action="/join" method="POST">
+        <h1>Enter an existing connection.</h1>
+        <input type="button" id="btnJoin" class="btn btn-link p-0" value="Key in room code.">
+        
     </form>
 </div>
+<script src="/js/enter.js"></script>

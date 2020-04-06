@@ -1,8 +1,11 @@
-<div class="col text-center">
-    <p class="mb-4">Room Code: <abbr title="Use this code to invite your friends!">{{code}}</abbr></p>
-    <div id="panel">
-        <p id="lblQuestion" class="display-4">{{question}}</p>
-        <br>
+<div class="row mt-4">
+    <div class="col text-center">
+        <p>Room code: {{code}}</p>
+    </div>
+</div>
+<div class="row mt-675">
+    <div id="panel" class="col-6 mx-auto text-center question">
+        <p>{{question}}</p>
         <span>
             {{#if shuffle}}
             <input type="button" id="btnShuffle" class="btn btn-link mr-2" value="Next Question">
@@ -11,7 +14,7 @@
             <input type="button" id="btnDeeper" class="btn btn-link" value="Go Deeper">
             {{/if}}
         </span>
+        <br>
+        <a href="/endgame">End game.</a>
     </div>
-    <input type="button" id="btnLeave" class="btn btn-link" value="Leave Room">
 </div>
-<script type="text/javascript" src="/js/game.js"></script>

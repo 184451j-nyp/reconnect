@@ -27,8 +27,6 @@ $(document).on("click", "#btnDeeper", function () {
     })
 });
 
-$(document).on("click", "#btnLeave", beforeUnload);
-
 $(window).on("beforeunload", beforeUnload);
 
 function refresh() {
@@ -42,8 +40,8 @@ function refresh() {
         },
         error: function (err) {
             alert("Took too long to receive a response!");
-            reconnect++;
-            if (reconnect == 3) {
+            count++;
+            if (count == 3) {
                 clearInterval(interval);
             }
         }
@@ -56,7 +54,7 @@ function beforeUnload(){
         url: "/api/unload",
         method: "GET",
         success: function(){
-            window.location.href = "/";
+            console.log("leaving");
         },
         failure: function(){
             console.log("error in executing final function");

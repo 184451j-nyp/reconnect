@@ -46,8 +46,8 @@ db.setUpDB();
 
 if (process.env.NODE_ENV == "production") {
     const options = {
-        key: fs.readFileSync(process.env.reconnect_key),
-        cert: fs.readFileSync(process.env.reconnect_cert)
+        key: fs.readFileSync(process.env.KEY),
+        cert: fs.readFileSync(process.env.CERT)
     }
     https.createServer(options, app).listen(49443);
 }
