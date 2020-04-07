@@ -9,7 +9,7 @@ $(document).on("click", "#btnShuffle", function () {
             $("#panel").html(result);
         },
         error: function (err) {
-            alert("There was an error while communiating with server. You should probably start panicking.");
+            alert("I'm sorry, I never learnt how to shuffle cards properly.");
         }
     });
 });
@@ -57,7 +57,7 @@ function beforeUnload(){
             console.log("leaving");
         },
         failure: function(){
-            console.log("error in executing final function");
+            console.log("error in executing final order");
         }
     })
 }
