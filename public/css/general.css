@@ -146,14 +146,14 @@ a {
 }
 
 /* game */
-.mt-675{
-	margin-top: 6.75em;
+.mt-6em{
+	margin-top: 6em;
 }
 
 .question p {
 	font-weight: 700;
 	font-size: 2em;
-	margin-bottom: 4em;
+	margin-bottom: 2.5em;
 }
 
 .question input[type=button],a {

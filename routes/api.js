@@ -32,16 +32,11 @@ router.get("/shuffle", (req, res) => {
                     deeper = true;
                     break;
                 case 2:
+                    question = "\"What is a man but the sum of his memories? We are the stories we live, the tales we tell ourselves.\"";
                     req.session.roomQn = -3;
-                    qnsORM.update({
-                        current_qn: -3
-                    }, {
-                        where: {
-                            room_id: code
-                        }
-                    });
-                    res.redirect("/endgame");
-                    return;
+                    room_current_qn = -3;
+                    shuffle = false;
+                    break;
                 default:
                     res.end();
                     return;
@@ -62,15 +57,10 @@ router.get("/shuffle", (req, res) => {
             req.session.roomQn = qnObjId;
         }
 
-        roomORM.update({
-            past_qns: room_past_qns,
-            current_level: room_current_level,
-            current_qn: room_current_qn
-        }, {
-            where: {
-                room_id: code
-            }
-        });
+        room.past_qns = room_past_qns;
+        room.current_level = room_current_level;
+        room.current_qn = room_current_qn;
+        room.save();
 
         res.render("panel", {
             layout: false,
@@ -86,14 +76,9 @@ router.get("/deeper", (req, res) => {
     (async () => {
         const room = await roomORM.findByPk(code);
         if (room.current_level == 1) {
-            await roomORM.update({
-                current_level: 2,
-                past_qns: []
-            }, {
-                where: {
-                    room_id: code
-                }
-            });
+            room.current_level = 2;
+            room.past_qns = [];
+            await room.save();
             res.redirect("/api/shuffle");
         } else {
             res.end();
@@ -118,15 +103,19 @@ router.get("/refresh", (req, res) => {
             switch (room.current_qn) {
                 case -1:
                     question = "Tell me your story.";
+                    req.session.roomQn = -1;
                     break;
                 case -2:
                     question = "Let's dig deeper.";
+                    req.session.roomQn = -2;
                     shuffle = false;
                     deeper = true;
                     break;
                 case -3:
-                    res.redirect("/endgame");
-                    return;
+                    question = "\"What is a man but the sum of his memories? We are the stories we live, the tales we tell ourselves.\"";
+                    req.session.roomQn = -3;
+                    shuffle = false;
+                    break;
             }
         } else {
             if (room.past_qns.length >= 15 && room.current_level == 1) {
@@ -152,13 +141,8 @@ router.get("/unload", (req, res) => {
         const room = await roomORM.findByPk(code);
         let roomCapacity = room.capacity;
         roomCapacity--;
-        await roomORM.update({
-            capacity: roomCapacity
-        }, {
-            where: {
-                room_id: code
-            }
-        });
+        room.capacity = roomCapacity;
+        await room.save();
         req.session = null;
         res.end();
     })();

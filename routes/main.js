@@ -43,13 +43,8 @@ router.post("/join", (req, res) => {
             req.session.roomCode = id;
             req.session.roomQn = room.current_qn;
             let currentCapacity = room.capacity + 1;
-            roomORM.update({
-                capacity: currentCapacity
-            }, {
-                where: {
-                    room_id: id
-                }
-            });
+            room.capacity = currentCapacity;
+            room.save();
             res.redirect("/game");
         } else {
             req.flash("fail", "Invalid join code!");
@@ -83,7 +78,7 @@ router.get("/game", (req, res) => {
                     shuffle = false;
                     break;
                 case -3:
-                    question = "\"Thank you, Mario! But our Princess is in another castle!\"";
+                    question = "\"What is a man but the sum of his memories? We are the stories we live, the tales we tell ourselves.\"";
                     shuffle = false;
                     break;
             }

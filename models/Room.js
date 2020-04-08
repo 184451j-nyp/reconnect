@@ -3,16 +3,22 @@ const db = require("../config/DBConfig");
 
 const Room = db.define("room", {
     room_id: {
-        type: seq.STRING,
+        type: seq.INTEGER,
         allowNull: false,
-        primaryKey: true
+        primaryKey: true,
+        get(){
+            return this.getDataValue("room_id").toString().padStart(6, "0");
+        },
+        set(val){
+            return this.setDataValue("room_id", parseInt(val));
+        }
     },
     past_qns: {
         type: seq.STRING,
-        get: function () {
+        get() {
             return JSON.parse(this.getDataValue("past_qns"));
         },
-        set: function (val) {
+        set(val) {
             return this.setDataValue("past_qns", JSON.stringify(val));
         },
         defaultValue: "[]"

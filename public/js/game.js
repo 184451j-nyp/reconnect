@@ -1,4 +1,4 @@
-var interval = setInterval(refresh, 5000);
+var interval = setInterval(refresh, 2500);
 var count = 0;
 
 $(document).on("click", "#btnShuffle", function () {
@@ -27,8 +27,6 @@ $(document).on("click", "#btnDeeper", function () {
     })
 });
 
-$(window).on("beforeunload", beforeUnload);
-
 function refresh() {
     $.ajax({
         url: "/api/refresh",
@@ -48,7 +46,7 @@ function refresh() {
     });
 }
 
-function beforeUnload(){
+window.onbeforeunload = function beforeUnload(){
     console.log("unload event fired");
     $.ajax({
         url: "/api/unload",
