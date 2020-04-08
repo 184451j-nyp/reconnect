@@ -194,12 +194,11 @@ a {
 /* shop */
 .message {
 	width: 80%;
-	margin: 3em auto 0;
+	margin: 2.5em auto 0;
 }
 
 .image {
 	width: 17.5em;
-	height: 20em;
 	background-color: antiquewhite;
 	float: left;
 	margin-left: 3em;
