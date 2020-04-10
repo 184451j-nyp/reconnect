@@ -36,22 +36,16 @@ router.post("/details", (req, res) => {
         cardmsg = req.body.cardmsg;
         
     (async() => {
-        const sender = await senderORM.create({
-            name: sendername,
-            email: senderemail,
-            address: senderaddress,
-            postal_code: senderpostal,
-            contact_no: sendercontact
-        });
-        const receiver = await receiverORM.create({
-            name: receivername,
-            address: receiveraddress,
-            postal_code: receiverpostal,
-            contact_no: receivercontact
-        });
         const invoice = await invoiceORM.create({
-            sender_id: sender.id,
-            receiver_id: receiver.id,
+            sender_name: sendername,
+            sender_email: senderemail,
+            sender_address: senderaddress,
+            sender_postal_code: senderpostal,
+            sender_contact_no: sendercontact,
+            receiver_name: receivername,
+            receiver_address: receiveraddress,
+            receiver_postal_code: receiverpostal,
+            receiver_contact_no: receivercontact,
             postage: shipping,
             card_msg: cardmsg
         });

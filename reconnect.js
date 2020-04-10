@@ -35,7 +35,6 @@ app.use(session({
     maxAge: 60 * 60 * 1000
 }));
 app.use(flash());
-app.use(ip().getIpInfoMiddleware);
 
 app.use("/", require("./routes/main"));
 app.use("/api", require("./routes/api"));

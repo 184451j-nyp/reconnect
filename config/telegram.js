@@ -15,7 +15,7 @@ bot.onText(/\/start/, (msg) => {
 bot.onText(/\/getreceipt/, (msg) => {
     if (msg.chat.id != process.env.TG_CAT_ID) {
         bot.sendMessage(msg.chat.id, "Hey this ain't for you! This will be reported!");
-        console.log(`msg.chat.username tried to access sensitive data!`);
+        console.log(`${msg.chat.username} tried to access sensitive data!`);
     } else {
         bot.sendMessage(msg.chat.id, "Please reply with receipt number. Do not include 'RCR' prefix.", {
             reply_markup: JSON.stringify({
@@ -29,10 +29,8 @@ bot.onText(/\/getreceipt/, (msg) => {
                     if (invoice == null) {
                         bot.sendMessage(msg.chat.id, "No invoice found!");
                     } else {
-                        const sender = await senderORM.findByPk(invoice.sender_id);
-                        const receiver = await receiverORM.findByPk(invoice.receiver_id);
-                        let senderString = `Who sent it? \n\nName: ${sender.name} \nEmail: ${sender.email} \nAddress: ${sender.address} \nPostal Code: ${sender.postal_code} \nContact No.: ${sender.contact_no}`;
-                        let receiverString = `Who is it for? \n\nName: ${receiver.name} \nAddress: ${receiver.address} \nPostal Code: ${receiver.postal_code} \nContact No.: ${receiver.contact_no}`;
+                        let senderString = `Who sent it? \n\nName: ${invoice.sender_name} \nEmail: ${invoice.sender_email} \nAddress: ${invoice.sender_address} \nPostal Code: ${invoice.sender_postal_code} \nContact No.: ${invoice.sender_contact_no}`;
+                        let receiverString = `Who is it for? \n\nName: ${invoice.receiver_name} \nAddress: ${invoice.receiver_address} \nPostal Code: ${invoice_receiver_postal_code} \nContact No.: ${invoice.receiver_contact_no}`;
                         let invoiceString = `Here are more details about this order! \n\nCreated at: ${invoice.createdAt}\nPostage option: ${invoice.postage}\nMessage: ${invoice.card_msg}`;
                         [senderString, receiverString, invoiceString].forEach(str => {
                             bot.sendMessage(msg.chat.id, str);

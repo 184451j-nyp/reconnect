@@ -8,8 +8,6 @@ const setUpDB = () => {
         () => {}
     ).then(
         () => {
-            invoice.belongsTo(sender, {foreignKey: "sender_id"});
-            invoice.belongsTo(receiver, {foreignKey: "receiver_id"});
             db.sync().catch(err => console.log(err));
         }
     ).catch(err => console.log('Error: ' + err));

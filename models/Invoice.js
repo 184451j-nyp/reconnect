@@ -11,10 +11,31 @@ const Invoice = db.define("invoice", {
             return "RCR" + this.getDataValue("id").toString().padStart(6, "0");
         }
     },
-    sender_id:{
+    sender_name: {
+        type: seq.STRING
+    },
+    sender_email: {
+        type: seq.STRING
+    },
+    sender_address: {
+        type: seq.STRING
+    },
+    sender_postal_code: {
         type: seq.INTEGER
     },
-    receiver_id: {
+    sender_contact_no: {
+        type: seq.INTEGER
+    },
+    receiver_name: {
+        type: seq.STRING
+    },
+    receiver_address: {
+        type: seq.STRING
+    },
+    receiver_postal_code: {
+        type: seq.INTEGER
+    },
+    receiver_contact_no: {
         type: seq.INTEGER
     },
     postage:{
