@@ -9,8 +9,6 @@ const cookie = require("cookie-parser");
 const flash = require("connect-flash");
 const https = require("https");
 const fs = require("fs");
-const ip = require("express-ip");
-const telegram = require("./config/telegram");
 const db = require("./config/DBConnection");
 
 require('dotenv').config();

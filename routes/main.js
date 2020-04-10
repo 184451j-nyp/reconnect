@@ -5,10 +5,7 @@ const roomORM = require("../models/Room");
 const qnsORM = require("../models/Question");
 
 router.get("/", (req, res) => {
-    const ipInfo = req.ipInfo;
-    if(ipInfo.error === ""){
-        console.log(`${ipInfo.ip} from ${ipInfo.city}, ${ipInfo.country} is requesting index page`);
-    }
+    console.log(`${req.connection.remoteAddress} is requesting index page`);
     res.render("index");
 });
 
