@@ -1,8 +1,6 @@
 require('dotenv').config();
 const TelegramBot = require("node-telegram-bot-api");
 const invoicesORM = require("../models/Invoice");
-const senderORM = require("../models/Sender");
-const receiverORM = require("../models/Receiver");
 const token = process.env.TG_TOKEN;
 const bot = new TelegramBot(token, {
     polling: true
