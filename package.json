@@ -5,6 +5,7 @@
   "scripts": {
     "start": "start http://localhost:49080 && node reconnect.js",
     "dev": "start http://localhost:49080 && nodemon --inspect reconnect.js",
+    "bot": "nodemon --inspect config/telegram.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
