@@ -1,0 +1,80 @@
+<div class="row mt-5">
+    <div class="col-10 mx-auto">
+        <form action="/shop/details" method="POST">
+            <div class="row orderform">
+                <div class="col">
+                    <h1 class="mb-4">Contact Information</h1>
+                    <div class="form-row mb-4">
+                        <div class="col">
+                            <input type="text" class="form-control form-control-lg" name="senderfname" placeholder="Your first name" required>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control form-control-lg" name="senderlname" placeholder="Your last name" required>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <input type="email" class="form-control form-control-lg" name="senderemail" placeholder="Your email address" required>
+                    </div>
+                    <div class="form-row mb-4">
+                        <div class="col-8">
+                            <input type="text" class="form-control form-control-lg" name="senderaddress" placeholder="Your address" required>
+                        </div>
+                        <div class="col-4">
+                            <input type="number" class="form-control form-control-lg" name="senderpostal" placeholder="Your postal code" pattern="[0-9]{6}" required>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <input type="tel" class="form-control form-control-lg" name="sendercontact" pattern="[8-9]{1}[0-9]{7}" placeholder="Your contact number" required>
+                    </div>
+                </div>
+                <div class="col">
+                    <h1 class="mb-4">Postage Information</h1>
+                    <div class="form-row mb-4">
+                        <div class="col">
+                            <input type="text" class="form-control form-control-lg" name="receiverfname" placeholder="Their first name" required>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control form-control-lg" name="receiverlname" placeholder="Their last name" required>
+                        </div>
+                    </div>
+                    <div class="form-row mb-4">
+                        <div class="col-8">
+                            <input type="text" class="form-control form-control-lg" name="receiveraddress" placeholder="Their address" required>
+                        </div>
+                        <div class="col-4">
+                            <input type="number" class="form-control form-control-lg" name="receiverpostal" placeholder="Their postal code" pattern="[0-9]{6}" required>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <input type="tel" class="form-control form-control-lg" name="receivercontact" pattern="[8-9]{1}[0-9]{7}" placeholder="Their contact number" required>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-5">
+                                <p>Postage options:</p>
+                            </div>
+                            <div class="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="shipping" id="cbShippingNormal" value="1" required>
+                                    <label class="form-check-label" for="cbShippingNormal">Normal (Free)</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="shipping" id="cbShippingRegister" value="2">
+                                    <label class="form-check-label" for="cbShippingRegister">Registered (+$2)</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>            
+            </div>
+            <div class="row my-5">
+                <div class="col-6 mx-auto">
+                    <textarea class="w-100" rows="4" cols="75" name="cardmsg" placeholder="Your message." required>{{cardMsg}}</textarea>
+                    <div class="text-center">
+                        <input type="submit" id="submit-btn" class="btn btn-link mt-5">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

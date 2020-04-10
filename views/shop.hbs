@@ -26,8 +26,10 @@
             x1 Customised (RE)CONNECT card<br>
             x1 (RE)CONNECT invitation card
         </p>
-        <textarea name="cardMsg" placeholder="Your message." rows="4" cols="75"></textarea>
-        <br>
-        <s><a href="#">Buy now - $2.00</a></s><p>Not available</p>
+        <form action="/shop" method="POST">
+            <textarea name="cardMsg" placeholder="Your message." rows="4" cols="75"></textarea>
+            <br>
+            <input type="submit" class="btn btn-link p-0" value="Buy now - $2.00">
+        </form>
     </div>
 </div>

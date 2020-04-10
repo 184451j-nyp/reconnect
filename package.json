@@ -3,7 +3,8 @@
   "version": "1.1.0",
   "main": "reconnect.js",
   "scripts": {
-    "start": "start http://localhost:49080 && nodemon --inspect reconnect.js",
+    "start": "start http://localhost:49080 && node reconnect.js",
+    "dev": "start http://localhost:49080 && nodemon --inspect reconnect.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,15 +26,17 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-handlebars": "^4.0.3",
+    "express-ip": "^1.0.4",
     "helmet": "^3.22.0",
     "mysql2": "^2.1.0",
+    "node-telegram-bot-api": "^0.40.0",
     "path": "^0.12.7",
     "sequelize": "^5.21.6",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.3"
   },
   "description": "It's time to reconnect over those late night talks.",
   "keywords": [

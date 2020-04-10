@@ -9,7 +9,8 @@ const cookie = require("cookie-parser");
 const flash = require("connect-flash");
 const https = require("https");
 const fs = require("fs");
-const io = require("socket.io");
+const ip = require("express-ip");
+const telegram = require("./config/telegram");
 const db = require("./config/DBConnection");
 
 require('dotenv').config();
@@ -36,9 +37,11 @@ app.use(session({
     maxAge: 60 * 60 * 1000
 }));
 app.use(flash());
+app.use(ip().getIpInfoMiddleware);
 
 app.use("/", require("./routes/main"));
 app.use("/api", require("./routes/api"));
+app.use("/shop", require("./routes/shop"));
 
 app.use(compression());
 app.use(helmet());

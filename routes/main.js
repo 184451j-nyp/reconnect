@@ -5,6 +5,10 @@ const roomORM = require("../models/Room");
 const qnsORM = require("../models/Question");
 
 router.get("/", (req, res) => {
+    const ipInfo = req.ipInfo;
+    if(ipInfo.error === ""){
+        console.log(`${ipInfo.ip} from ${ipInfo.city}, ${ipInfo.country} is requesting index page`);
+    }
     res.render("index");
 });
 
@@ -100,9 +104,5 @@ router.get("/game", (req, res) => {
 router.get("/endgame", (req, res) => {
     res.render("endgame");
 });
-
-router.get("/shop", (req, res) => {
-    res.render("shop");
-})
 
 module.exports = router;
