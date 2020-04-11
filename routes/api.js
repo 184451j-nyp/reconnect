@@ -60,7 +60,7 @@ router.get("/shuffle", (req, res) => {
         room.past_qns = room_past_qns;
         room.current_level = room_current_level;
         room.current_qn = room_current_qn;
-        room.save();
+        await room.save();
 
         res.render("panel", {
             layout: false,
@@ -146,7 +146,6 @@ router.get("/unload", (req, res) => {
         roomCapacity--;
         room.capacity = roomCapacity;
         await room.save();
-        req.session = null;
         res.end();
     })();
 });
