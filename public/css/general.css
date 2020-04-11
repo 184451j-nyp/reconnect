@@ -51,14 +51,15 @@ a:hover{
     margin-top: 6em;
 }
 
-.mt-75 {
-    margin-top: 7.5em;
+.mt-8 {
+    margin-top: 8em;
 }
 
 .maintext p {
     margin-top: 0;
     margin-bottom: 0;
 }
+
 
 /* instructions */
 .mt-5em {
@@ -68,6 +69,10 @@ a:hover{
 ol li{
     font-size: 0.75em;
     margin-bottom: 0.5em;
+}
+
+.instructiontext p{
+    font-size: 0.8em;
 }
 
 /* enter */
