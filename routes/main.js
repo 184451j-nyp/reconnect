@@ -79,7 +79,7 @@ router.get("/game", (req, res) => {
                     shuffle = false;
                     break;
                 case -3:
-                    question = "\"What is a man but the sum of his memories? We are the stories we live, the tales we tell ourselves.\"";
+                    question = "Write a note for your partner. Send it to them after the call ends.";
                     shuffle = false;
                     break;
             }

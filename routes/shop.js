@@ -2,8 +2,6 @@
 const express = require('express');
 const router = express.Router();
 const invoiceORM = require("../models/Invoice");
-const senderORM = require("../models/Sender");
-const receiverORM = require("../models/Receiver");
 
 router.get("/", (req, res) => {
     res.render("shop");

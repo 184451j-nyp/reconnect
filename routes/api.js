@@ -32,7 +32,7 @@ router.get("/shuffle", (req, res) => {
                     deeper = true;
                     break;
                 case 2:
-                    question = "\"What is a man but the sum of his memories? We are the stories we live, the tales we tell ourselves.\"";
+                    question = "Write a note for your partner. Send it to them after the call ends.";
                     req.session.roomQn = -3;
                     room_current_qn = -3;
                     shuffle = false;
@@ -112,10 +112,13 @@ router.get("/refresh", (req, res) => {
                     deeper = true;
                     break;
                 case -3:
-                    question = "\"What is a man but the sum of his memories? We are the stories we live, the tales we tell ourselves.\"";
+                    question = "Write a note for your partner. Send it to them after the call ends.";
                     req.session.roomQn = -3;
                     shuffle = false;
                     break;
+                default:
+                    res.end();
+                    return;
             }
         } else {
             if (room.past_qns.length >= 15 && room.current_level == 1) {

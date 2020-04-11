@@ -25,6 +25,10 @@ a {
     text-decoration: underline;
 }
 
+a:hover{
+    color: #E6B900;
+}
+
 .btn.btn-link {
     font-family: 'Montserrat', sans-serif;
     font-size: 15px;
@@ -51,7 +55,7 @@ a {
     margin-top: 7.5em;
 }
 
-.maintext>p {
+.maintext p {
     margin-top: 0;
     margin-bottom: 0;
 }
@@ -59,6 +63,11 @@ a {
 /* instructions */
 .mt-5em {
     padding-top: 5em;
+}
+
+ol li{
+    font-size: 0.75em;
+    margin-bottom: 0.5em;
 }
 
 /* enter */
