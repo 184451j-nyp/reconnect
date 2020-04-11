@@ -28,7 +28,7 @@ bot.onText(/\/getreceipt/, (msg) => {
                         bot.sendMessage(msg.chat.id, "No invoice found!");
                     } else {
                         let senderString = `Who sent it? \n\nName: ${invoice.sender_name} \nEmail: ${invoice.sender_email} \nAddress: ${invoice.sender_address} \nPostal Code: ${invoice.sender_postal_code} \nContact No.: ${invoice.sender_contact_no}`;
-                        let receiverString = `Who is it for? \n\nName: ${invoice.receiver_name} \nAddress: ${invoice.receiver_address} \nPostal Code: ${invoice_receiver_postal_code} \nContact No.: ${invoice.receiver_contact_no}`;
+                        let receiverString = `Who is it for? \n\nName: ${invoice.receiver_name} \nAddress: ${invoice.receiver_address} \nPostal Code: ${invoice.receiver_postal_code} \nContact No.: ${invoice.receiver_contact_no}`;
                         let invoiceString = `Here are more details about this order! \n\nCreated at: ${invoice.createdAt}\nPostage option: ${invoice.postage}\nMessage: ${invoice.card_msg}`;
                         [senderString, receiverString, invoiceString].forEach(str => {
                             bot.sendMessage(msg.chat.id, str);

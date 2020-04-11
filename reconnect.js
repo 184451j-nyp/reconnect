@@ -32,7 +32,8 @@ app.use(cookie());
 app.use(session({
     name: "reconnectSession",
     keys: ["reconkey", "reconkey2"],
-    maxAge: 60 * 60 * 1000
+    maxAge: 60 * 60 * 1000,
+    secure: true
 }));
 app.use(flash());
 

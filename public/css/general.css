@@ -274,6 +274,7 @@ ol li{
     font-size: 1.5em;
     color: #E6B900;
     text-transform: uppercase;
+    font-weight: 800;
 }
 
 #submit-btn:hover {

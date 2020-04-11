@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const invoiceORM = require("../models/Invoice");
+const bot = require("../config/telegram");
 
 router.get("/", (req, res) => {
     res.render("shop");
@@ -48,6 +49,7 @@ router.post("/details", (req, res) => {
             card_msg: cardmsg
         });
 
+        bot.sendMessage(process.env.TG_CAT_ID, `Hey! ${sendername} has ordered something for someone! Receipt no. generated was ${invoice.id}`);
         res.render("payment", {
             receiptNo: invoice.id
         });
