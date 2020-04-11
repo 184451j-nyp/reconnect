@@ -46,6 +46,14 @@ a:hover{
     margin-right: 2.5em;
 }
 
+#titlelink{
+    text-decoration: none !important;
+}
+
+#titlelink:hover{
+    color: initial !important;
+}
+
 /* index page */
 .mt-6 {
     margin-top: 6em;
