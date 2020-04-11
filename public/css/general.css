@@ -270,8 +270,16 @@ ol li{
     font-weight: 700;
 }
 
+.orderform input{
+    font-size: 0.6em;
+}
+
+#postageOptions,#cardmsg{
+    font-size: 0.6em;
+}
+
 #submit-btn {
-    font-size: 1.5em;
+    font-size: 1.25em;
     color: #E6B900;
     text-transform: uppercase;
     font-weight: 800;
