@@ -33,7 +33,7 @@ const Room = db.define("room", {
     },
     capacity: {
         type: seq.INTEGER,
-        defaultValue: 1
+        defaultValue: 0
     }
 }, {
     createdAt: false

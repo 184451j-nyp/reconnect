@@ -1,4 +1,4 @@
-var interval = setInterval(refresh, 2500);
+var interval = setInterval(refresh, 1500);
 var count = 0;
 
 $(document).on("click", "#btnShuffle", function () {

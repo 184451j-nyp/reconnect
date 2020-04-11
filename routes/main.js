@@ -43,9 +43,6 @@ router.post("/join", (req, res) => {
         if (room != null && room.capacity < 2) {
             req.session.roomCode = id;
             req.session.roomQn = room.current_qn;
-            let currentCapacity = room.capacity + 1;
-            room.capacity = currentCapacity;
-            room.save();
             res.redirect("/game");
         } else {
             req.flash("fail", "Invalid join code!");
@@ -87,6 +84,9 @@ router.get("/game", (req, res) => {
             const qnObj = await qnsORM.findByPk(room.current_qn);
             question = qnObj.qn_string;
         }
+
+        room.capacity++;
+        room.save();
 
         res.render("game", {
             layout: "ingame",
