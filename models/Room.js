@@ -30,10 +30,6 @@ const Room = db.define("room", {
     current_level: {
         type: seq.INTEGER,
         defaultValue: 1
-    },
-    capacity: {
-        type: seq.INTEGER,
-        defaultValue: 0
     }
 }, {
     createdAt: false

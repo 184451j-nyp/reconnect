@@ -45,17 +45,3 @@ function refresh() {
         }
     });
 }
-
-window.onbeforeunload = function beforeUnload(){
-    console.log("unload event fired");
-    $.ajax({
-        url: "/api/unload",
-        method: "GET",
-        success: function(){
-            console.log("leaving");
-        },
-        failure: function(){
-            console.log("error in executing final order");
-        }
-    })
-}

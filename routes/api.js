@@ -147,14 +147,4 @@ router.get("/refresh", (req, res) => {
     })();
 });
 
-router.get("/unload", (req, res) => {
-    var code = req.session.roomCode;
-    (async () => {
-        const room = await roomORM.findByPk(code);
-        room.capacity--;
-        await room.save();
-        res.end();
-    })();
-});
-
 module.exports = router;

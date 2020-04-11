@@ -40,7 +40,7 @@ router.post("/join", (req, res) => {
     let id = req.body.tbRoomCode;
     (async () => {
         const room = await roomORM.findByPk(id);
-        if (room != null && room.capacity < 2) {
+        if (room != null) {
             req.session.roomCode = id;
             req.session.roomQn = room.current_qn;
             res.redirect("/game");
@@ -84,9 +84,6 @@ router.get("/game", (req, res) => {
             const qnObj = await qnsORM.findByPk(room.current_qn);
             question = qnObj.qn_string;
         }
-
-        room.capacity++;
-        room.save();
 
         res.render("game", {
             layout: "ingame",
