@@ -92,9 +92,18 @@ router.get("/refresh", (req, res) => {
     var deeper = false;
     var question = "";
 
+    if(code == null){
+        res.redirect("/");
+        return;
+    }
+
     (async () => {
         const room = await roomORM.findByPk(code);
-        if (req.session.roomQn == room.current_qn) {
+        if(room == null){
+            res.redirect("/api/refresh");
+            return;
+        }
+        else if (req.session.roomQn == room.current_qn) {
             res.end();
             return;
         }
@@ -142,9 +151,7 @@ router.get("/unload", (req, res) => {
     var code = req.session.roomCode;
     (async () => {
         const room = await roomORM.findByPk(code);
-        let roomCapacity = room.capacity;
-        roomCapacity--;
-        room.capacity = roomCapacity;
+        room.capacity--;
         await room.save();
         res.end();
     })();
