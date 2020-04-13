@@ -20,12 +20,12 @@ npm install
 npm start
 ```
 
-Open your preferred web browser and visit [http://localhost:49800](http://localhost:49800)
+Open your preferred web browser and visit [http://localhost:49080](http://localhost:49080)
 
 # Folder Structure
 ```
 .
-├── config                  # All database configuration files
+├── config                  # All configuration files (database, telegram, socket.io)
 ├── models                  # Database table definitions
 ├── public                  # Webpage publicly accessible files
 ├── routes                  # Express routes defined

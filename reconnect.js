@@ -7,8 +7,7 @@ const helmet = require("helmet");
 const session = require("cookie-session");
 const cookie = require("cookie-parser");
 const flash = require("connect-flash");
-const https = require("https");
-const fs = require("fs");
+const http = require("http");
 const db = require("./config/DBConnection");
 
 require('dotenv').config();
@@ -42,15 +41,10 @@ app.use("/shop", require("./routes/shop"));
 
 app.use(compression());
 app.use(helmet());
+app.set("trust proxy", true);
 
 db.setUpDB();
 
-if (process.env.NODE_ENV == "production") {
-    const options = {
-        key: fs.readFileSync(process.env.KEY),
-        cert: fs.readFileSync(process.env.CERT)
-    }
-    https.createServer(options, app).listen(49443);
-}
+let server = http.createServer(app).listen(49080);
 
-app.listen(49080);
+require("./config/socket")(server);

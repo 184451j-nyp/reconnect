@@ -6,7 +6,7 @@ const qnsORM = require("../models/Question");
 
 router.get("/shuffle", (req, res) => {
     var code = req.session.roomCode;
-    var shuffle = true;
+    var shuffle = false;
     var deeper = false;
     var question = "";
     (async () => {
@@ -28,23 +28,18 @@ router.get("/shuffle", (req, res) => {
                     question = "It's time to go deeper.";
                     room_current_qn = -2;
                     req.session.roomQn = -2;
-                    shuffle = false;
                     deeper = true;
                     break;
                 case 2:
                     question = "Write a note for your partner. Send it to them after the call ends.";
                     req.session.roomQn = -3;
                     room_current_qn = -3;
-                    shuffle = false;
                     break;
                 default:
                     res.end();
                     return;
             }
         } else {
-            if (room_past_qns.length >= 15 && room_current_level == 1) {
-                deeper = true;
-            }
             let randomInt;
             let qnObjId;
             do {
@@ -130,9 +125,6 @@ router.get("/refresh", (req, res) => {
                     return;
             }
         } else {
-            if (room.past_qns.length >= 15 && room.current_level == 1) {
-                deeper = true;
-            }
             req.session.roomQn = room.current_qn;
             const qnObj = await qnsORM.findByPk(room.current_qn);
             question = qnObj.qn_string;

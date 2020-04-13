@@ -5,7 +5,7 @@ const roomORM = require("../models/Room");
 const qnsORM = require("../models/Question");
 
 router.get("/", (req, res) => {
-    console.log(`${req.connection.remoteAddress} is requesting index page`);
+    console.log(`${req.ip} is requesting index page`);
     res.render("index");
 });
 
@@ -81,6 +81,9 @@ router.get("/game", (req, res) => {
                     break;
             }
         } else {
+            if (room.past_qns.length >= 15 && room.current_level == 1) {
+                deeper = true;
+            }
             const qnObj = await qnsORM.findByPk(room.current_qn);
             question = qnObj.qn_string;
         }
