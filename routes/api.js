@@ -125,6 +125,10 @@ router.get("/refresh", (req, res) => {
                     return;
             }
         } else {
+            if (room.past_qns.length >= 15 && room.current_level == 1) {
+                deeper = true;
+            }
+            
             req.session.roomQn = room.current_qn;
             const qnObj = await qnsORM.findByPk(room.current_qn);
             question = qnObj.qn_string;
