@@ -8,6 +8,7 @@ router.get("/shuffle", (req, res) => {
     var code = req.session.roomCode;
     var shuffle = false;
     var deeper = false;
+    var loading = true;
     var question = "";
     (async () => {
         const room = await roomORM.findByPk(code);
@@ -61,7 +62,8 @@ router.get("/shuffle", (req, res) => {
             layout: false,
             question,
             shuffle,
-            deeper
+            deeper,
+            loading
         });
     })();
 });

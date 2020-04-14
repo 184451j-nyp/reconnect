@@ -6,6 +6,9 @@
     {{#if deeper}}
     <input type="button" id="btnDeeper" class="btn btn-link" value="Go Deeper">
     {{/if}}
+    {{#if loading}}
+    <i>Waiting for your partner to continue...</i>&nbsp;<img id="loading" src="/img/loader-60px.svg">
+    {{/if}}
 </span>
 <br>
 <a href="/endgame">End game.</a>
