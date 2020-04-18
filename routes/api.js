@@ -10,6 +10,7 @@ router.get("/shuffle", (req, res) => {
     var deeper = false;
     var loading = true;
     var question = "";
+
     (async () => {
         const room = await roomORM.findByPk(code);
         let room_past_qns = room.past_qns;
@@ -24,6 +25,7 @@ router.get("/shuffle", (req, res) => {
         });
 
         if (room_past_qns.length >= totalByClass.length) {
+            loading = false;
             switch (room_current_level) {
                 case 1:
                     question = "It's time to go deeper.";
@@ -57,6 +59,8 @@ router.get("/shuffle", (req, res) => {
         room.current_level = room_current_level;
         room.current_qn = room_current_qn;
         await room.save();
+
+        req.session.isWaiting = loading;
 
         res.render("panel", {
             layout: false,
@@ -135,6 +139,8 @@ router.get("/refresh", (req, res) => {
             const qnObj = await qnsORM.findByPk(room.current_qn);
             question = qnObj.qn_string;
         }
+
+        req.session.isWaiting = false;
 
         res.render("panel", {
             layout: false,

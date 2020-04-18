@@ -14,9 +14,8 @@ router.get("/instructions", (req, res) => {
 });
 
 router.get("/enter", (req, res) => {
-    res.render("enter", {
-        fail: req.flash("fail")
-    });
+    req.session = null;
+    res.render("enter");
 });
 
 router.get("/create", (req, res) => {
@@ -45,7 +44,6 @@ router.post("/join", (req, res) => {
             req.session.roomQn = room.current_qn;
             res.redirect("/game");
         } else {
-            req.flash("fail", "Invalid join code!");
             res.redirect("/enter");
         }
     })();
@@ -53,7 +51,8 @@ router.post("/join", (req, res) => {
 
 router.get("/game", (req, res) => {
     var code = req.session.roomCode;
-    var shuffle = true;
+    var loading = req.session.isWaiting;
+    var shuffle = !loading;
     var deeper = false;
     var question = "";
 
@@ -93,7 +92,8 @@ router.get("/game", (req, res) => {
             code,
             question,
             shuffle,
-            deeper
+            deeper,
+            loading
         });
     })();
 });
