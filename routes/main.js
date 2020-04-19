@@ -63,7 +63,6 @@ router.get("/game", (req, res) => {
 
     (async () => {
         const room = await roomORM.findByPk(code);
-        req.session.roomQn = room.current_qn;
         if (room.current_qn < 0) {
             switch (room.current_qn) {
                 case -1:

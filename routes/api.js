@@ -14,8 +14,6 @@ router.get("/shuffle", (req, res) => {
     (async () => {
         const room = await roomORM.findByPk(code);
         let room_past_qns = room.past_qns;
-        let room_current_qn = room.current_qn;
-        let room_current_level = room.current_level;
         room_past_qns.push(room.current_qn);
 
         const totalByClass = await qnsORM.findAll({
@@ -26,17 +24,15 @@ router.get("/shuffle", (req, res) => {
 
         if (room_past_qns.length >= totalByClass.length) {
             loading = false;
-            switch (room_current_level) {
+            switch (room.current_level) {
                 case 1:
                     question = "It's time to go deeper.";
-                    room_current_qn = -2;
-                    req.session.roomQn = -2;
+                    room.current_qn = -2;
                     deeper = true;
                     break;
                 case 2:
                     question = "Write a note for your partner. Send it to them after the call ends.";
-                    req.session.roomQn = -3;
-                    room_current_qn = -3;
+                    room.current_qn = -3;
                     break;
                 default:
                     res.end();
@@ -50,14 +46,11 @@ router.get("/shuffle", (req, res) => {
                 qnObjId = totalByClass[randomInt].qn_id;
             } while (room_past_qns.includes(qnObjId));
 
-            room_current_qn = qnObjId;
+            room.current_qn = qnObjId;
             question = totalByClass[randomInt].qn_string;
-            req.session.roomQn = qnObjId;
         }
 
         room.past_qns = room_past_qns;
-        room.current_level = room_current_level;
-        room.current_qn = room_current_qn;
         await room.save();
 
         req.session.isWaiting = loading;
