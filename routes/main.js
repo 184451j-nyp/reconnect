@@ -20,8 +20,8 @@ router.get("/enter", (req, res) => {
 
 router.get("/create", (req, res) => {
     (async () => {
-        var id;
-        var room;
+        let id;
+        let room;
         do {
             id = (Math.floor(Math.random() * (999999 - 10)) + 10).toString().padStart(6, "0");
             room = await roomORM.findByPk(id);
@@ -50,11 +50,11 @@ router.post("/join", (req, res) => {
 });
 
 router.get("/game", (req, res) => {
-    var code = req.session.roomCode;
-    var loading = req.session.isWaiting;
-    var shuffle = !loading;
-    var deeper = false;
-    var question = "";
+    let code = req.session.roomCode;
+    let loading = req.session.isWaiting;
+    let shuffle = !loading;
+    let deeper = false;
+    let question = "";
 
     if (code == null) {
         res.redirect("/enter");

@@ -5,11 +5,11 @@ const roomORM = require("../models/Room");
 const qnsORM = require("../models/Question");
 
 router.get("/shuffle", (req, res) => {
-    var code = req.session.roomCode;
-    var shuffle = false;
-    var deeper = false;
-    var loading = true;
-    var question = "";
+    let code = req.session.roomCode;
+    let shuffle = false;
+    let deeper = false;
+    let loading = true;
+    let question = "";
 
     (async () => {
         const room = await roomORM.findByPk(code);
@@ -66,11 +66,12 @@ router.get("/shuffle", (req, res) => {
 });
 
 router.get("/deeper", (req, res) => {
-    var code = req.session.roomCode;
+    let code = req.session.roomCode;
     (async () => {
         const room = await roomORM.findByPk(code);
         if (room.current_level == 1) {
             room.current_level = 2;
+            room.current_qn = -2;
             room.past_qns = [];
             await room.save();
             res.redirect("/api/shuffle");
@@ -81,10 +82,10 @@ router.get("/deeper", (req, res) => {
 });
 
 router.get("/refresh", (req, res) => {
-    var code = req.session.roomCode;
-    var shuffle = true;
-    var deeper = false;
-    var question = "";
+    let code = req.session.roomCode;
+    let shuffle = true;
+    let deeper = false;
+    let question = "";
 
     if(code == null){
         res.redirect("/");
