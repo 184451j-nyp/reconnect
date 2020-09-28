@@ -4,7 +4,7 @@ $(document).on("click", "#btnJoin", function(){
 });
 
 $(document).on("input", "#tbRoomCode", function(){
-    var code = $("#tbRoomCode").val();
+    let code = $("#tbRoomCode").val();
     if(code.length == 6){
         $("#form1").submit();
     }

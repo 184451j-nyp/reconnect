@@ -7,7 +7,7 @@ const bindListener = (io) => {
             socket.join(room);
         });
         socket.on("refresh", () => {
-            var roomCode = Object.keys(socket.rooms)[0];
+            let roomCode = Object.keys(socket.rooms)[0];
             socket.to(roomCode).emit("refresh", roomCode);
         });
         socket.on("disconnect", () => {

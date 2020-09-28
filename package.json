@@ -1,5 +1,5 @@
 {
-  "name": "reconnect-node",
+  "name": "reconnect",
   "version": "1.1.2",
   "main": "reconnect.js",
   "scripts": {
@@ -13,7 +13,7 @@
     "url": "git+https://github.com/184451j-nyp/ReConnect-node.git"
   },
   "author": "timothy john low",
-  "license": "ISC",
+  "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/184451j-nyp/ReConnect-node/issues"
   },
@@ -26,16 +26,16 @@
     "cookie-session": "^1.4.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "express-handlebars": "^4.0.3",
-    "helmet": "^3.22.0",
+    "express-handlebars": "^5.1.0",
+    "helmet": "^4.1.1",
     "mysql2": "^2.1.0",
-    "node-telegram-bot-api": "^0.40.0",
+    "node-telegram-bot-api": "^0.50.0",
     "path": "^0.12.7",
-    "sequelize": "^5.21.6",
+    "sequelize": "^6.3.5",
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.4"
   },
   "description": "It's time to reconnect over those late night talks.",
   "keywords": [

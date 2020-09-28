@@ -9,13 +9,13 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-    var cardMsg = req.body.cardMsg;
+    let cardMsg = req.body.cardMsg;
     req.session.cardMsg = cardMsg;
     res.redirect("/shop/details");
 });
 
 router.get("/details", (req, res) => {
-    var cardMsg = req.session.cardMsg;
+    let cardMsg = req.session.cardMsg;
     res.render("orderform", {
         cardMsg
     });
